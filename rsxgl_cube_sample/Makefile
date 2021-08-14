@@ -9,6 +9,8 @@ endif
 
 include $(PSL1GHT)/ppu_rules
 
+SHELL := /bin/bash
+
 #---------------------------------------------------------------------------------
 # TARGET is the name of the output
 # BUILD is the directory where object files & intermediate files will be placed
@@ -26,7 +28,9 @@ TITLE		:=	RSXGL Cube Test
 APPID		:=	RSXGLCU1
 CONTENTID	:=	UP0001-$(APPID)_00-0000000000000000
 
-CGC			:= $(PS3DEV)/bin/cgc
+#CGC			:= $(PS3DEV)/bin/cgc
+#CGC			:= /usr/bin/cgc
+CGC			:= $(PS3DEV)/bin/cgcomp
 NV40ASM		:= $(PS3DEV)/bin/nv40asm
 NV40C		:= $(PS3DEV)/bin/nv40c
 XXD			:= xxd

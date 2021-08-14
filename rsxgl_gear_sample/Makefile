@@ -29,8 +29,8 @@ CONTENTID	:=	UP0001-$(APPID)_00-0000000000000000
 # options for code generation
 #---------------------------------------------------------------------------------
 
-CFLAGS		=	-O2 -Wall -mcpu=cell $(MACHDEP) $(INCLUDE) -D__RSX__ -DEIGEN2_SUPPORT
-CXXFLAGS	=	$(CFLAGS)
+CFLAGS		=	-O2 -Wall -mcpu=cell $(MACHDEP) $(INCLUDE) -D__RSX__
+CXXFLAGS	=	$(CFLAGS) -std=c++11
 
 LDFLAGS		=	$(MACHDEP) -Wl,-Map,$(notdir $@).map
 
@@ -86,11 +86,16 @@ export OFILES	:=	$(addsuffix .o,$(BINFILES)) \
 #---------------------------------------------------------------------------------
 # build a list of include paths
 #---------------------------------------------------------------------------------
+#export INCLUDE	:=	$(foreach dir,$(INCLUDES), -I$(CURDIR)/$(dir)) \
+#					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
+#					$(LIBPSL1GHT_INC) -I$(CURDIR)/$(BUILD) \
+#					-I$(PORTLIBS)/include -I$(CURDIR)/../extsrc/eigen-eigen-3.0.1/Eigen \
+#					-I$(CURDIR)/../extsrc/eigen-eigen-3.0.1
 export INCLUDE	:=	$(foreach dir,$(INCLUDES), -I$(CURDIR)/$(dir)) \
 					$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 					$(LIBPSL1GHT_INC) -I$(CURDIR)/$(BUILD) \
-					-I$(PORTLIBS)/include -I$(CURDIR)/../extsrc/eigen-eigen-3.0.1/Eigen \
-					-I$(CURDIR)/../extsrc/eigen-eigen-3.0.1
+					-I$(PORTLIBS)/include -I$(CURDIR)/../extsrc/eigen/Eigen \
+					-I$(CURDIR)/../extsrc/eigen
 
 #---------------------------------------------------------------------------------
 # build a list of library paths
